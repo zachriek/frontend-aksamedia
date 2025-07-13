@@ -19,6 +19,8 @@ export function useFetchWithAuth() {
 		setErrors(null);
 
 		try {
+			const token = localStorage.getItem('token');
+
 			const headers: Record<string, string> = {
 				...(options.headers as Record<string, string>),
 			};
@@ -28,7 +30,6 @@ export function useFetchWithAuth() {
 			}
 
 			if (options.withAuth) {
-				const token = localStorage.getItem('token');
 				if (token) {
 					headers['Authorization'] = `Bearer ${token}`;
 				}
@@ -39,7 +40,7 @@ export function useFetchWithAuth() {
 				headers,
 			});
 
-			if (response.status === 401) {
+			if (token && response.status === 401) {
 				localStorage.removeItem('token');
 				localStorage.removeItem('user');
 				window.location.href = '/login';
