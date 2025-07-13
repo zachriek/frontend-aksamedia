@@ -36,7 +36,7 @@ const Button: React.FC<ButtonProps> = ({ variant = 'primary', onClick, icon: Ico
 		<button
 			onClick={onClick}
 			type={type}
-			className={`${!variant.includes('text') ? 'px-3 py-1.5' : ''} rounded-lg transition duration-200 flex items-center space-x-2 cursor-pointer ${getVariantClass()} ${className}`}
+			className={`${!variant.includes('text') ? 'px-3 py-1.5' : ''} rounded-lg transition duration-200 flex items-center justify-center space-x-2 cursor-pointer ${getVariantClass()} ${className}`}
 			{...rest}
 		>
 			{Icon && <Icon size={iconSize} />}
